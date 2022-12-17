@@ -7,12 +7,34 @@ public class pisti{
 		Random r = new Random();
 		Deck deck = new Deck();
 		deck.shuffle();
-		for (int i = 0; i<deck.numofcards; i++){
-			System.out.println(deck.cards[i].getView());
-		}
-		deck.cutDeck(deck);
+		deck.cutDeck(deck);	
 		int pointsplayer = 0;
 		int pointscomputer = 0;
-		System.out.println(0%2);
+		Card[] playershand = new Card[4];
+		Card[] computershand = new Card[4];
+		Card[] board = new Card[52];
+		for (int i = 0; i<4; i++){
+			board[i] = deck.cards[i];
+		}
+		for(int i = 0; i<48; i++){
+			if(i%8==0){
+				for (int j = 0; j<4; j++){
+					playershand[j] = deck.cards[i+2*j+4];
+					computershand[j] = deck.cards[i+2*j+5];
+				}
+			}
+			if(i%2==0){
+				System.out.println("Now it is your turn to play, your cards are: ");
+				for (int j = 0; j<4; j++){
+					if (playershand[j]==null) continue;
+					System.out.println(playershand[j].getView());
+				}
+			}
+			if(i%2!=0){
+				
+				
+				
+			}
+		}
  	}
 }
