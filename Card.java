@@ -9,7 +9,7 @@ class Card {
 	this.point = point;
   }
   public String getView() {
-  return rank + "" + suit + point;
+  return rank + "" + suit;
 }
   
   public String getSuit() {
