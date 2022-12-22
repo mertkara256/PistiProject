@@ -29,9 +29,10 @@ public class pisti{
 					if (playershand[j]==null) continue;
 					System.out.println(playershand[j].getView());
 				}
+				System.out.println("Enter number between 1-4");
+				int move = sc.nextInt();
 			}
 			if(i%2!=0){
-				
 				
 				
 			}
