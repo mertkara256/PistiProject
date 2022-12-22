@@ -25,16 +25,27 @@ public class pisti{
 				}
 			}
 			if(i%2==0){
+				System.out.println("There are " + numofboard + " cards on the board");
 				System.out.println("Now it is your turn to play, your cards are: ");
 				for (int j = 0; j<4; j++){
 					if (playershand[j]==null) continue;
 					System.out.println(playershand[j].getView());
 				}
+				if (numofboard == 0) System.out.println("There are no cards on the board");
+				else System.out.println("Card on board is: " + board[numofboard-1].getView());
 				System.out.println("Enter number between 0-3");
 				int move = sc.nextInt();
 				board[numofboard] = playershand[move];
 				numofboard++;
-				if (playershand[move].getRank().equals(board[numofboard-1]) || playershand[move].getRank().equals("J")){
+				if (numofboard==1){
+					playershand[move] = null;
+					continue;
+				}
+				if (playershand[move].getRank().equals(board[numofboard-2].getRank()) || playershand[move].getRank().equals("J")){
+					if (board[0].getRank()==board[1].getRank()){
+						pointsplayer += 10;
+						System.out.println("You made pisti!");
+					}
 					for(int k = 0; k<numofboard; k++){
 						pointsplayer += board[k].getPoint();
 						board[k] = null;
@@ -44,12 +55,36 @@ public class pisti{
 				playershand[move] = null;
 			}
 			if(i%2!=0){
-				if(i%8==1) board[numofboard] = computershand[0];
-				if(i%8==3) board[numofboard] = computershand[1];
-				if(i%8==5) board[numofboard] = computershand[2];
-				if(i%8==7) board[numofboard] = computershand[3];
+				numofboard += 1;
+				board[numofboard-1] = computershand[((i%8)-1)/2];
+				if (numofboard==1){
+					computershand[((i%8)-1)/2] = null;
+					continue;
+				}
+				if (computershand[((i%8)-1)/2].getRank().equals(board[numofboard-2].getRank()) || computershand[((i%8)-1)/2].getRank().equals("J")){
+					if (board[0].getRank()==board[1].getRank()){
+						pointscomputer += 10;
+						System.out.println("Your opponent made pisti!");
+					}
+					for(int k = 0; k<numofboard; k++){
+						pointscomputer += board[k].getPoint();
+						board[k] = null;
+					}
+					numofboard = 0;
+			}
+			computershand[((i%8)-1)/2] = null;
+			}
+			if (i == 47 && numofboard != 0){
+				for( int m = 0; m<numofboard; m++){
+					pointscomputer += board[m].getPoint();
+					board[m] = null;
+				}
 			}
 		}
+		System.out.println("Your point is: " + pointsplayer);
+		System.out.println("Computers point is: " + pointscomputer);
+		if ( pointsplayer < pointscomputer) System.out.println("Computer won!");
+		else System.out.println("You won!");
  	}
 	
 }
