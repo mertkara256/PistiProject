@@ -3,10 +3,10 @@ import java.util.Random;
 
 class Deck {
   public static String[] suits = {
-    "♠",
-    "♣",
-    "♥",
-    "♦"
+    "\u2660",
+    "\u2663",
+    "\u2665",
+    "\u2666"
   };
   public static String[] ranks = {
     "A",
@@ -35,8 +35,8 @@ class Deck {
     for (int i = 0; i < suits.length; i++) {
       for (int j = 0; j < ranks.length; j++) {
 		  int m = 1;
-		  if (suits[i] == "♦" && ranks[j] == "10") m=3;
-		  if (suits[i] == "♣" && ranks[j] == "2") m=2;
+		  if (suits[i] == "\u2666" && ranks[j] == "10") m=3;
+		  if (suits[i] == "\u2663" && ranks[j] == "2") m=2;
         cards[currentCard++] = new Card(suits[i], ranks[j], m);
       }
     }
