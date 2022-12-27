@@ -33,11 +33,13 @@ public class pisti {
           System.out.println(playershand[j].getView());
         }
         if (numofboard != 0) System.out.println("Card on board is: " + board[numofboard - 1].getView());
+		String enterednumber;
 		int move;
           while(true) {
             System.out.println("Choose a card to throw (0-3)");
             try {
-                move = sc.nextInt();
+				enterednumber = sc.nextLine();
+                move = Integer.parseInt(enterednumber);
 				if(playershand[move]==null) {
 					System.out.println("You already used that card.");
 					continue;
@@ -46,7 +48,6 @@ public class pisti {
 			} 
              catch (Exception e) {
                 System.out.println("Please enter valid number between 0 and 3");
-				move = -1;
                 continue;
             }
             break;
