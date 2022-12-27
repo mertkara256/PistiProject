@@ -33,22 +33,25 @@ public class pisti {
           System.out.println(playershand[j].getView());
         }
         if (numofboard != 0) System.out.println("Card on board is: " + board[numofboard - 1].getView());
-		int move = 0;
-while(true) {
+		int move;
+          while(true) {
             System.out.println("Choose a card to throw (0-3)");
-
             try {
                 move = sc.nextInt();
+				if(playershand[move]==null) {
+					System.out.println("You already used that card.");
+					continue;
+				}
                 board[numofboard] = playershand[move];
 
             } catch (Exception e) {
-                System.err.println("Please enter valid number between 0 and 3");
+                System.out.println("Please enter valid number between 0 and 3");
                 continue;
             }
             break;
 			}
-board[numofboard] = playershand[move];
-numofboard++;
+           board[numofboard] = playershand[move];
+           numofboard++;
         if (numofboard == 1) {
           playershand[move] = null;
           continue;
