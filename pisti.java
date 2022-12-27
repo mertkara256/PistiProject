@@ -43,9 +43,10 @@ public class pisti {
 					continue;
 				}
                 board[numofboard] = playershand[move];
-
-            } catch (Exception e) {
+			} 
+             catch (Exception e) {
                 System.out.println("Please enter valid number between 0 and 3");
+				move = -1;
                 continue;
             }
             break;
