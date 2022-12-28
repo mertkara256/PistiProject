@@ -48,6 +48,17 @@ public class pisti {
             catch (Exception e) {
               System.out.println("Please enter valid number between 0 and 3");
               continue;
+				enterednumber = sc.nextLine();
+                move = Integer.parseInt(enterednumber);
+				if(playershand[move]==null) {
+					System.out.println("You already used that card.");
+					continue;
+				}
+                board[numofboard] = playershand[move];
+			} 
+             catch (Exception e) {
+                System.out.println("Please enter valid number between 0 and 3");
+                continue;
             }
             break;
 			}

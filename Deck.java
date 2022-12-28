@@ -35,8 +35,20 @@ class Deck {
   public static void cutDeck(Deck deck) {
     Scanner sc = new Scanner(System.in);
 
-    System.out.print("Enter the index where you want to cut the deck (1-52): ");
-    int splitpoint = sc.nextInt();
+    String usersplitpoint;
+	int splitpoint;
+	while(true) {
+              System.out.print("Enter the index where you want to cut the deck (1-52): ");
+            try {
+				usersplitpoint = sc.nextLine();
+                splitpoint = Integer.parseInt(usersplitpoint);
+			} 
+             catch (Exception e) {
+                System.out.println("Please enter valid number between 1 and 52.");
+                continue;
+            }
+            break;
+			}
 
     Card[] tempDeck = new Card[deck.numofcards];
 
