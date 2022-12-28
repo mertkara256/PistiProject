@@ -1,5 +1,9 @@
 import java.util.Scanner;
 import java.util.Random;
+import java.nio.file.Paths;
+import java.util.Formatter;
+import java.io.IOException;
+import java.io.FileWriter;
 
 public class pisti {
   public static void main(String[] args) {
@@ -32,27 +36,26 @@ public class pisti {
           System.out.println(playershand[j].getView());
         }
         if (numofboard != 0) System.out.println("Card on board is: " + board[numofboard - 1].getView());
-		String enterednumber;
-		int move;
-          while(true) {
-            System.out.println("Choose a card to throw (0-3)");
-            try {
-			  enterednumber = sc.nextLine();
-              move = Integer.parseInt(enterednumber);
-			  if(playershand[move]==null) {
-			    System.out.println("You already used that card.");
-				continue;
-				}
-              board[numofboard] = playershand[move];
-			} 
-            catch (Exception e) {
-              System.out.println("Please enter valid number between 0 and 3");
+        String enterednumber;
+        int move;
+        while (true) {
+          System.out.println("Choose a card to throw (0-3)");
+          try {
+            enterednumber = sc.nextLine();
+            move = Integer.parseInt(enterednumber);
+            if (playershand[move] == null) {
+              System.out.println("You already used that card.");
               continue;
-			} 
-            break;
-			}
-           board[numofboard] = playershand[move];
-           numofboard++;
+            }
+            board[numofboard] = playershand[move];
+          } catch (Exception e) {
+            System.out.println("Please enter valid number between 0 and 3");
+            continue;
+          }
+          break;
+        }
+        board[numofboard] = playershand[move];
+        numofboard++;
         if (numofboard == 1) {
           playershand[move] = null;
           continue;
@@ -73,7 +76,7 @@ public class pisti {
       if (i % 2 != 0) {
         numofboard += 1;
         board[numofboard - 1] = computershand[((i % 8) - 1) / 2];
-		System.out.println("Your opponent played:" + computershand[((i % 8) - 1) / 2].getView());
+        System.out.println("Your opponent played:" + computershand[((i % 8) - 1) / 2].getView());
         if (numofboard == 1) {
           computershand[((i % 8) - 1) / 2] = null;
           continue;
@@ -102,5 +105,54 @@ public class pisti {
     System.out.println("Computers point is: " + pointscomputer);
     if (pointsplayer < pointscomputer) System.out.println("Computer won!");
     if (pointsplayer > pointscomputer) System.out.println("You won!");
+    Scanner reader = null;
+    System.out.print("Enter name: ");
+    String name = sc.nextLine();
+    String[] score = {
+      "Name: ",
+      "Score: "
+    };
+    Formatter f = null;
+    FileWriter fw = null;
+	int check = 0;
+    try {
+	  reader = new Scanner(Paths.get("top10.txt"));
+      fw = new FileWriter("top10.txt", true);
+      f = new Formatter(fw);
+	  String[] pieces = reader.nextLine().split(",");
+	  for (int x=0; x<20; x++){
+		if (x%2!=0){
+			check = Integer.parseInt(pieces[x]):
+			if(
+		}
+	}
+      f.format("%s, %s\n", name, pointsplayer);
+      fw.close();
+    } catch (Exception e) {
+      System.err.println("Something went wrong.");
+    } finally {
+      if (f != null) {
+        f.close();
+      }
+	  if (reader != null) {
+        reader.close();
+      }
+    }
+    try {
+      reader = new Scanner(Paths.get("top10.txt"));
+      while (reader.hasNextLine()) {
+        String[] info = reader.nextLine().split(",");
+        for (int i = 0; i < info.length; i++) {
+          System.out.println(score[i] + info[i].trim());
+        }
+      }
+    } catch (IOException e) {
+      e.printStackTrace();
+    } finally {
+      if (reader != null) {
+        reader.close();
+      }
+    }
+
   }
 }
