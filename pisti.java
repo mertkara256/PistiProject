@@ -1,6 +1,5 @@
 import java.util.Scanner;
 import java.util.Random;
-import java.util.InputMismatchException;
 
 public class pisti {
   public static void main(String[] args) {
@@ -33,22 +32,27 @@ public class pisti {
           System.out.println(playershand[j].getView());
         }
         if (numofboard != 0) System.out.println("Card on board is: " + board[numofboard - 1].getView());
-		int move = 0;
-while(true) {
+		String enterednumber;
+		int move;
+          while(true) {
             System.out.println("Choose a card to throw (0-3)");
-
             try {
-                move = sc.nextInt();
-                board[numofboard] = playershand[move];
-
-            } catch (Exception e) {
-                System.err.println("Please enter valid number between 0 and 3");
-                continue;
+			  enterednumber = sc.nextLine();
+              move = Integer.parseInt(enterednumber);
+			  if(playershand[move]==null) {
+			    System.out.println("You already used that card.");
+				continue;
+				}
+              board[numofboard] = playershand[move];
+			} 
+            catch (Exception e) {
+              System.out.println("Please enter valid number between 0 and 3");
+              continue;
             }
             break;
 			}
-board[numofboard] = playershand[move];
-numofboard++;
+           board[numofboard] = playershand[move];
+           numofboard++;
         if (numofboard == 1) {
           playershand[move] = null;
           continue;
@@ -69,6 +73,7 @@ numofboard++;
       if (i % 2 != 0) {
         numofboard += 1;
         board[numofboard - 1] = computershand[((i % 8) - 1) / 2];
+		System.out.println("Your opponent played:" + computershand[((i % 8) - 1) / 2].getView());
         if (numofboard == 1) {
           computershand[((i % 8) - 1) / 2] = null;
           continue;
@@ -97,7 +102,5 @@ numofboard++;
     System.out.println("Computers point is: " + pointscomputer);
     if (pointsplayer < pointscomputer) System.out.println("Computer won!");
     if (pointsplayer > pointscomputer) System.out.println("You won!");
-    else System.out.println("It is tie!");
   }
-
 }

@@ -2,27 +2,9 @@ import java.util.Scanner;
 import java.util.Random;
 
 class Deck {
-  public static String[] suits = {
-    "\u2660",
-    "\u2663",
-    "\u2665",
-    "\u2666"
-  };
-  public static String[] ranks = {
-    "A",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
-    "10",
-    "J",
-    "Q",
-    "K"
-  };
+  public static String[] suits = {"\u2660","\u2663","\u2665","\u2666"};
+  public static String[] ranks = {"A","2","3","4","5","6","7","8","9","10","J","Q","K"};
+  
   private Random r = new Random();
   public static int numofcards = suits.length * ranks.length;
 

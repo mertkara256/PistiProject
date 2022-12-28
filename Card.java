@@ -11,11 +11,9 @@ class Card {
   public String getView() {
   return rank + "" + suit;
 }
-  
   public String getSuit() {
     return suit;
-  }
-  
+  } 
   public String getRank() {
     return rank;
   }
