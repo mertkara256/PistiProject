@@ -1,3 +1,10 @@
-Mert, 20
-mertxd, 6
-pistimonster, 32
+merttest1,50
+merttest2,45
+0,41
+merttest3,40
+merttest4,35
+merttest5,30
+merttest6,25
+0,21
+merttest7,20
+merttest8,15

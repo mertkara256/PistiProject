@@ -105,36 +105,55 @@ public class pisti {
     System.out.println("Computers point is: " + pointscomputer);
     if (pointsplayer < pointscomputer) System.out.println("Computer won!");
     if (pointsplayer > pointscomputer) System.out.println("You won!");
-    Scanner reader = null;
     System.out.print("Enter name: ");
     String name = sc.nextLine();
     String[] score = {
       "Name: ",
       "Score: "
     };
+    Scanner reader = null;
     Formatter f = null;
     FileWriter fw = null;
-	int check = 0;
+    int place = 0;
+    String[] lines = new String[10];
+
     try {
-	  reader = new Scanner(Paths.get("top10.txt"));
-      fw = new FileWriter("top10.txt", true);
-      f = new Formatter(fw);
-	  String[] pieces = reader.nextLine().split(",");
-	  for (int x=0; x<20; x++){
-		if (x%2!=0){
-			check = Integer.parseInt(pieces[x]):
-			if(
-		}
-	}
-      f.format("%s, %s\n", name, pointsplayer);
+      reader = new Scanner(Paths.get("top10.txt"));
+      for (int i = 0; i < 10; i++) {
+        if (reader.hasNextLine()) {
+          lines[i] = reader.nextLine();
+        } else {
+          lines[i] = null;
+        }
+      }
+      reader.close();
+
+      for (int i = 0; i < 10; i++) {
+        if (lines[i] == null || pointsplayer > Integer.parseInt(lines[i].split(",")[1])) {
+          place = i;
+          break;
+        }
+      }
+
+      for (int i = 9; i > place; i--) {
+        lines[i] = lines[i - 1];
+      }
+      lines[place] = name + "," + Integer.toString(pointsplayer);
+
+      fw = new FileWriter("top10.txt", false);
+      for (int i = 0; i < 10; i++) {
+        if (lines[i] != null) {
+          fw.write(lines[i] + "\n");
+        }
+      }
       fw.close();
     } catch (Exception e) {
-      System.err.println("Something went wrong.");
+      System.err.println(e);
     } finally {
       if (f != null) {
         f.close();
       }
-	  if (reader != null) {
+      if (reader != null) {
         reader.close();
       }
     }
