@@ -14,6 +14,8 @@ public class pisti {
     deck.cutDeck(deck);
     int pointsplayer = 0;
     int pointscomputer = 0;
+	int cardofplayer = 0;
+	int cardofcomputer = 0;
     int numofboard = 4;
     Card[] playershand = new Card[4];
     Card[] computershand = new Card[4];
@@ -68,6 +70,7 @@ public class pisti {
           for (int k = 0; k < numofboard; k++) {
             pointsplayer += board[k].getPoint();
             board[k] = null;
+			cardofplayer++;
           }
           numofboard = 0;
         }
@@ -89,6 +92,7 @@ public class pisti {
           for (int k = 0; k < numofboard; k++) {
             pointscomputer += board[k].getPoint();
             board[k] = null;
+			cardofcomputer++;
           }
           numofboard = 0;
         }
@@ -98,8 +102,11 @@ public class pisti {
         for (int m = 0; m < numofboard; m++) {
           pointscomputer += board[m].getPoint();
           board[m] = null;
+		  cardofcomputer++;
         }
       }
+	  if ( i == 47 && cardofcomputer<cardofplayer) pointsplayer += 3;
+	  if ( i == 47 && cardofcomputer>cardofplayer) pointscomputer += 3;
     }
     System.out.println("Your point is: " + pointsplayer);
     System.out.println("Computers point is: " + pointscomputer);

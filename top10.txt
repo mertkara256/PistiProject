@@ -6,5 +6,5 @@ merttest3,40
 merttest4,35
 merttest5,30
 merttest6,25
+mert,23
 0,21
-merttest7,20
